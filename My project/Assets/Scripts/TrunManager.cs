@@ -37,5 +37,12 @@ public class TrunManager : MonoBehaviour
             getScripts();
         }
     }
-    
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            nextTurn();
+        }
+    }
+
 }

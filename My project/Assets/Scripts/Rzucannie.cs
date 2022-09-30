@@ -23,9 +23,16 @@ public class Rzucannie : MonoBehaviour
     
     public int maxEnergy;
     public EnergyBar energybar;
-    
 
-        private void Start()
+    private bool enabled = true;
+    public void enableDisable(bool enable)
+    {
+
+        enabled = enable;
+
+
+    }
+    private void Start()
         {
             myEnergy = GetComponent<Energy>();
             readyToThrow = true;
@@ -35,7 +42,7 @@ public class Rzucannie : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0 && myEnergy.curEnergy >= 10)
+        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0 && myEnergy.curEnergy >= 10 && enabled)
         {
             Throw();
             myEnergy.TakeExhaust(10f);

@@ -12,8 +12,15 @@ public class NewBehaviourScript2 : MonoBehaviour
 
   float xRotation;
   float yRotation;
+    private bool enabled = true;
+    public void enableDisable(bool enable)
+    {
 
-  private void start()
+        enabled = enable;
+
+
+    }
+    private void start()
   {
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
@@ -22,17 +29,21 @@ public class NewBehaviourScript2 : MonoBehaviour
 
   private void Update()
   {
-      float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-      float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensX;
+        if (enabled)
+        {
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensX;
 
-      yRotation += mouseX;
+            yRotation += mouseX;
 
-      xRotation -= mouseY;
+            xRotation -= mouseY;
 
-      xRotation = Math.Clamp(xRotation, -90f, 90f);
-      
-      transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-      orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-      
-  }
+            xRotation = Math.Clamp(xRotation, -90f, 90f);
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
+        }
+
+    }
 } 
