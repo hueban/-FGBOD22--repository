@@ -12,7 +12,14 @@ public class PlayerMovment : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
-
+    private bool enabled = true;
+    public void enableDisable(bool enable)
+    {
+        
+        enabled = enable;
+        
+        
+    }
     [HideInInspector] public float walkSpeed;
     [HideInInspector] public float sprintSpeed;
 
@@ -45,17 +52,20 @@ public class PlayerMovment : MonoBehaviour
 
     private void Update()
     {
-        
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        if (enabled)
+        {
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
 
-        MyInput();
-        SpeedControl();
+            MyInput();
+            SpeedControl();
 
+
+            if (grounded)
+                rb.drag = groundDrag;
+            else
+                rb.drag = 0;
+        }
         
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
     }
 
     private void FixedUpdate()
