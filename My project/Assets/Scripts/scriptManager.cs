@@ -25,7 +25,7 @@ public class scriptManager : MonoBehaviour
         throwScript = player.GetComponent<Rzucannie>();
         movementScript = player.GetComponent<PlayerMovment>();
         energyScript = player.GetComponent<Energy>();
-        camScript = player.GetComponent<NewBehaviourScript2>();
+        camScript = camera.GetComponent<NewBehaviourScript2>();
     }
 
     // Update is called once per frame
