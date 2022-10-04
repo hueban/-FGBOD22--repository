@@ -24,6 +24,9 @@ public class BasicEnemy: MonoBehaviour
     curHealth -= damage; 
       if(curHealth <=0)
         endscreen.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+        
       if (enabled)
       {
         healthbar.UpdateHealt((float)curHealth/(float)maxHealth);
