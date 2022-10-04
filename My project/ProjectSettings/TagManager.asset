@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ammo
+  - Bob
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player 2 body
+  - Player 1 body
   - 
   - 
   - WhatIsGround

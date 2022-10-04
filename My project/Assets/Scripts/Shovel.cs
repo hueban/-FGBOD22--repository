@@ -9,7 +9,7 @@ public class Shovel : MonoBehaviour
     public Transform cam;
     public Transform attackPoint;
     public GameObject objectToThrow;
-
+    private Energy myEnergy;
     [Header("Settings")]
     public int totalThrowns;
     public float ThrownCooldown;
@@ -21,11 +21,12 @@ public class Shovel : MonoBehaviour
 
     bool readyToThrow;
     
-    
+    public int maxEnergy;
+    public EnergyBar energybar;
 
         private void Start()
         {
-
+            myEnergy = GetComponent<Energy>();
             readyToThrow = true;
         } 
         
@@ -33,9 +34,10 @@ public class Shovel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0)
+        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0 && myEnergy.curEnergy >= 15)
         {
             Throw();
+            myEnergy.TakeExhaust(15f);
         }
 
             

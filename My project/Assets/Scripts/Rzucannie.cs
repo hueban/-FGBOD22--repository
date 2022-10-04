@@ -20,19 +20,17 @@ public class Rzucannie : MonoBehaviour
     public float throwUpwardForce;
 
     bool readyToThrow;
-    
+    private Vector3 randomForce;
     public int maxEnergy;
     public EnergyBar energybar;
+    private bool enabled = false;
 
-    private bool enabled = true;
     public void enableDisable(bool enable)
     {
-
         enabled = enable;
-
-
     }
-    private void Start()
+
+        private void Start()
         {
             myEnergy = GetComponent<Energy>();
             readyToThrow = true;
@@ -42,11 +40,15 @@ public class Rzucannie : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0 && myEnergy.curEnergy >= 10 && enabled)
+        if (enabled)
         {
-            Throw();
-            myEnergy.TakeExhaust(10f);
+            if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0 && myEnergy.curEnergy >= 10)
+            {
+                Throw();
+                myEnergy.TakeExhaust(10f);
+            }
         }
+        
 
             
 
@@ -66,8 +68,10 @@ public class Rzucannie : MonoBehaviour
         if (Physics.Raycast(cam.position, cam.forward, out hit, Mathf.Infinity))
         {
             forceDirection = (hit.point - attackPoint.position).normalized;
+            
         }
-        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce;
+        randomForce = new Vector3(Random.Range(-4.55f,4.55f),Random.Range(-4.55f,4.55f),Random.Range(-4.55f,4.55f));
+        Vector3 forceToAdd = forceDirection * throwForce + transform.up * throwUpwardForce + randomForce;
         
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
 
