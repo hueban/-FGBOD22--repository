@@ -8,8 +8,8 @@ public class BasicEnemy: MonoBehaviour
   public int maxHealth;
   public Healthbar healthbar;
   public int curHealth;
-  
-
+  [SerializeField] GameObject endscreen;
+    
   
   void Start()
   {
@@ -23,7 +23,7 @@ public class BasicEnemy: MonoBehaviour
     
     curHealth -= damage; 
       if(curHealth <=0)
-        Destroy(gameObject);
+        endscreen.SetActive(true);
       if (enabled)
       {
         healthbar.UpdateHealt((float)curHealth/(float)maxHealth);
