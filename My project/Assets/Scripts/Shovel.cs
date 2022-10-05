@@ -23,8 +23,14 @@ public class Shovel : MonoBehaviour
     
     public int maxEnergy;
     public EnergyBar energybar;
+    private bool enableD = false;
 
-        private void Start()
+    public void enableDisable(bool enable)
+    {
+        enableD = enable;
+    }
+
+    private void Start()
         {
             myEnergy = GetComponent<Energy>();
             readyToThrow = true;
@@ -34,7 +40,7 @@ public class Shovel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0 && myEnergy.curEnergy >= 15)
+        if (Input.GetKeyDown(throwKey) && readyToThrow && totalThrowns > 0 && myEnergy.curEnergy >= 15 && enableD)
         {
             Throw();
             myEnergy.TakeExhaust(15f);

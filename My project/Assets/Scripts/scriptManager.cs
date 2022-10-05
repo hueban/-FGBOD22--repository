@@ -44,7 +44,7 @@ public class scriptManager : MonoBehaviour
             movementScript.enableDisable(true);
             camScript.enableDisable(true);
             throwScript.enableDisable(true);
-            
+            shovelScript.enableDisable(true);
         }
         else
         {
@@ -56,7 +56,7 @@ public class scriptManager : MonoBehaviour
             movementScript.enableDisable(false);
             camScript.enableDisable(false);
             throwScript.enableDisable(false);
-            
+            shovelScript.enableDisable(false);
         }
     }
 }
